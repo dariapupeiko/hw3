@@ -6,3 +6,21 @@
       - data/raw/dataset.csv
     outs:
       - data/prepared/dataset.csv
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/prepared/dataset.csv
+    outs:
+      - model.json
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - data/prepared/dataset.csv
+      - model.json
+    metrics:
+      - metrics.json:
+          cache: false

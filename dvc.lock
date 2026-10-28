@@ -16,3 +16,39 @@ stages:
       hash: md5
       md5: f2be6dccee1651c9806d5a16f1b7eee7
       size: 51
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/prepared/dataset.csv
+      hash: md5
+      md5: f2be6dccee1651c9806d5a16f1b7eee7
+      size: 51
+    - path: src/train.py
+      hash: md5
+      md5: e4993f49a332cdb61f7614f3b0f720b7
+      size: 917
+    outs:
+    - path: model.json
+      hash: md5
+      md5: 564b755b124f709099b7f3ad55a2f103
+      size: 29
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/prepared/dataset.csv
+      hash: md5
+      md5: f2be6dccee1651c9806d5a16f1b7eee7
+      size: 51
+    - path: model.json
+      hash: md5
+      md5: 564b755b124f709099b7f3ad55a2f103
+      size: 29
+    - path: src/evaluate.py
+      hash: md5
+      md5: e8167b6bc1336bbfcd906e9167dfed5c
+      size: 675
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 3a13090403849d37722b5d63d4365cd0
+      size: 18
